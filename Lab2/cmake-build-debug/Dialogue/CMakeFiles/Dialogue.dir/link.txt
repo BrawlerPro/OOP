@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/Dialogue.dir/source/main.cpp.o -o Dialogue  ../WeatherReport/libWeatherReport.a 

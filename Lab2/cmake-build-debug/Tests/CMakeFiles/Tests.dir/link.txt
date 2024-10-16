@@ -1,1 +1,0 @@
-/usr/bin/c++ -g --coverage CMakeFiles/Tests.dir/source/SimpleForecastTests.cpp.o CMakeFiles/Tests.dir/source/ComplexForecastTests.cpp.o -o Tests  ../lib/libgtest_main.a ../WeatherReport/libWeatherReport.a ../lib/libgtest.a 
