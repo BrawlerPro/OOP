@@ -1,2 +1,0 @@
-/usr/bin/ar qc libCrosswordSolver.a CMakeFiles/CrosswordSolver.dir/source/CrosswordSolver.cpp.o
-/usr/bin/ranlib libCrosswordSolver.a
