@@ -1,0 +1,2 @@
+/usr/bin/ar qc libWeatherReport.a CMakeFiles/WeatherReport.dir/source/ComplexForecast.cpp.o CMakeFiles/WeatherReport.dir/source/SimpleForecast.cpp.o
+/usr/bin/ranlib libWeatherReport.a
