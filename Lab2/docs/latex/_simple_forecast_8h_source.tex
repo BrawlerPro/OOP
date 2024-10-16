@@ -1,0 +1,75 @@
+\doxysection{Simple\+Forecast.\+h}
+\hypertarget{_simple_forecast_8h_source}{}\label{_simple_forecast_8h_source}\index{WeatherReport/include/WeatherReport/SimpleForecast.h@{WeatherReport/include/WeatherReport/SimpleForecast.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SIMPLEFORECAST\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SIMPLEFORECAST\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{long}\ timestamp;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{float}\ morningTemp;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ dayTemp;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{float}\ eveningTemp;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ std::string\ weather;\ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{float}\ precipitation;\ \ \ \ \ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_simple_forecast_ac25b34f1c736c494a7eae4297e918a0b}{SimpleForecast}}();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_simple_forecast_ac25b34f1c736c494a7eae4297e918a0b}{SimpleForecast}}(\textcolor{keywordtype}{long}\ timestamp,\ \textcolor{keywordtype}{float}\ morningTemp,\ \textcolor{keywordtype}{float}\ dayTemp,\ \textcolor{keywordtype}{float}\ eveningTemp,\ std::string\ weather,\ \textcolor{keywordtype}{float}\ precipitation);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_simple_forecast_ac25b34f1c736c494a7eae4297e918a0b}{SimpleForecast}}(\textcolor{keywordtype}{long}\ timestamp,\ \textcolor{keywordtype}{float}\ morningTemp,\ \textcolor{keywordtype}{float}\ dayTemp,\ \textcolor{keywordtype}{float}\ eveningTemp,\ \textcolor{keywordtype}{float}\ precipitation);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Геттеры\ -\/-\/-\/}}
+\DoxyCodeLine{00067\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_simple_forecast_aa8d42fe928023d3616a89359a8aaf6bb}{getTimestamp}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_simple_forecast_aeabf8a388517193840e684ed8cefc30a}{getMorningTemp}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_simple_forecast_a82756e0cd9386e648f9be771ee663b9a}{getDayTemp}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_simple_forecast_a74e57b319f9288709ab29bab0eb05cd2}{getEveningTemp}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{class_simple_forecast_a205938d5fe18350199a204b4babdaa6e}{getWeather}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00102\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_simple_forecast_ad298de44b4e6e00cd0f9fe0f5273ef67}{getPrecipitation}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{class_simple_forecast_ac7cb9cd8d53bd633174f1d5e95f1c558}{getReadableDate}}(\textcolor{keywordtype}{long}\ timestamp);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Сеттеры\ -\/-\/-\/}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simple_forecast_af9b33b4dd5ff9df48a7a80f08492026d}{setTimestamp}}(\textcolor{keywordtype}{long}\ timestamp);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simple_forecast_ac60c4ba291031090d062aa81e46a508d}{setMorningTemp}}(\textcolor{keywordtype}{float}\ temp);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simple_forecast_af1cdc5fab38407dca4c42b7d5d441ddc}{setDayTemp}}(\textcolor{keywordtype}{float}\ temp);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simple_forecast_a90fadd69a6f4c6db364b6a69e0da3c98}{setEveningTemp}}(\textcolor{keywordtype}{float}\ temp);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simple_forecast_a3d504f9fe8c58522578a452ec2ff7902}{setWeather}}(\textcolor{keyword}{const}\ std::string\ \&weather);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simple_forecast_ab3026740ada28e98daf3cba84552707e}{setPrecipitation}}(\textcolor{keywordtype}{float}\ precipitation);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Прочие\ методы\ -\/-\/-\/}}
+\DoxyCodeLine{00163\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_simple_forecast_a3d8ef00b3f103680286ec8db323b8dd3}{isInvalidForecast}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00170\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_simple_forecast_a389c969f7d457ed7eaed75e39c6cf378}{getAverageTemp}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\&\ \mbox{\hyperlink{class_simple_forecast_ab79c055897b2a3472c297f1fb1fd1d38}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\ \&other);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Операторы\ ввода\ и\ вывода\ -\/-\/-\/}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{friend}\ std::istream\&\ \mbox{\hyperlink{class_simple_forecast_a1d2ba9f02f667fb7df11d3cc3a02fd63}{operator>>}}(std::istream\ \&in,\ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\ \&forecast);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ \mbox{\hyperlink{class_simple_forecast_acf67812d764cafa3cc45cb13ddc5034a}{operator<<}}(std::ostream\ \&out,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\ \&forecast);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Операторы\ сравнения\ -\/-\/-\/}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_simple_forecast_a702bc1e56ef42c7ea194675e88688564}{operator<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\ \&other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_simple_forecast_a4c195fb4a939d75e53166a7b32af29cf}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\ \&other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00219\ \};}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SIMPLEFORECAST\_H}}
+
+\end{DoxyCode}

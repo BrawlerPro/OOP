@@ -1,0 +1,55 @@
+\doxysection{Complex\+Forecast.\+h}
+\hypertarget{_complex_forecast_8h_source}{}\label{_complex_forecast_8h_source}\index{WeatherReport/include/WeatherReport/ComplexForecast.h@{WeatherReport/include/WeatherReport/ComplexForecast.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ COMPLEXFORECAST\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ COMPLEXFORECAST\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <WeatherReport/SimpleForecast.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}*\ forecasts;\ \ }
+\DoxyCodeLine{00013\ \ \ \ \ std::size\_t\ size;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00014\ \ \ \ \ std::size\_t\ capacity;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ resize();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_complex_forecast_a59420ec20c75f0100dc8671616026a88}{ComplexForecast}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_complex_forecast_a59420ec20c75f0100dc8671616026a88}{ComplexForecast}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}*\ forecastsArray,\ std::size\_t\ count);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_complex_forecast_a59420ec20c75f0100dc8671616026a88}{ComplexForecast}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\&\ other);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_complex_forecast_a59420ec20c75f0100dc8671616026a88}{ComplexForecast}}(\mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\&\ \mbox{\hyperlink{class_complex_forecast_a877ada9797de96b7016f5f9779cacc73}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\&\ other);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\&\ \mbox{\hyperlink{class_complex_forecast_a877ada9797de96b7016f5f9779cacc73}{operator=}}(\mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\&\&\ other)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_complex_forecast_af848ca9fe30d32539333085f9a3b4d7f}{\string~ComplexForecast}}();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_complex_forecast_a4371cb09018f2cca8c3f99813edd4106}{addForecast}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\&\ forecast);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\&\ \mbox{\hyperlink{class_complex_forecast_ad384ffe10364ea88622532f77a2ec5f8}{operator[]}}(std::size\_t\ index);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_complex_forecast_a2cdd6276e3bd7f0ca8ac2276cf2ae7b0}{removeForecast}}(std::size\_t\ index);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\ \mbox{\hyperlink{class_complex_forecast_a8330e95721f68e75a8b61b0f507f89fa}{findColdestDay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{class_simple_forecast}{SimpleForecast}}\ \mbox{\hyperlink{class_complex_forecast_abf6c88c16dfdf9191c1cfa4d63c0b89f}{findNearestSunnyDay}}(\textcolor{keywordtype}{long}\ currentTimestamp)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_complex_forecast_a2e6a67b76c839a5aba2ec52a7b8927e9}{removeInvalidForecasts}}();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_complex_forecast_ae887afa79feca8261caeb3661c866de2}{sortForecasts}}();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ \mbox{\hyperlink{class_complex_forecast_ac8763b17bf240f905332df988abf08b2}{operator<<}}(std::ostream\&\ out,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\&\ forecast);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{friend}\ std::istream\&\ \mbox{\hyperlink{class_complex_forecast_acf660558178c58e731c4f87e9e58ff3e}{operator>>}}(std::istream\&\ in,\ \mbox{\hyperlink{class_complex_forecast}{ComplexForecast}}\&\ forecast);}
+\DoxyCodeLine{00154\ \};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ COMPLEXFORECAST\_H}}
+
+\end{DoxyCode}

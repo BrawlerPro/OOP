@@ -1,0 +1,858 @@
+        -:    0:Source:/mnt/c/Users/rasul/CLionProjects/OOP/Lab2/Tests/source/SimpleForecastTests.cpp
+        -:    0:Graph:/mnt/c/Users/rasul/CLionProjects/OOP/Lab2/cmake-build-debug/Tests/CMakeFiles/Tests.dir/source/SimpleForecastTests.cpp.gcno
+        -:    0:Data:/mnt/c/Users/rasul/CLionProjects/OOP/Lab2/cmake-build-debug/Tests/CMakeFiles/Tests.dir/source/SimpleForecastTests.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <WeatherReport/SimpleForecast.h>
+        -:    2:#include <gtest/gtest.h>
+        -:    3:
+        4:    4:TEST(SimpleForecastTests, DefaultConstructor) {
+        1:    5:    SimpleForecast forecast;
+       1*:    6:    EXPECT_EQ(forecast.getTimestamp(), 0);
+       1*:    7:    EXPECT_FLOAT_EQ(forecast.getMorningTemp(), 0.0);
+       1*:    8:    EXPECT_FLOAT_EQ(forecast.getDayTemp(), 0.0);
+       1*:    9:    EXPECT_FLOAT_EQ(forecast.getEveningTemp(), 0.0);
+       2*:   10:    EXPECT_EQ(forecast.getWeather(), "солнечно");
+       1*:   11:    EXPECT_FLOAT_EQ(forecast.getPrecipitation(), 0.0);
+        1:   12:}
+------------------
+_ZN43SimpleForecastTests_DefaultConstructor_TestC2Ev:
+function _ZN43SimpleForecastTests_DefaultConstructor_TestC2Ev called 1 returned 100% blocks executed 100%
+        1:    4:TEST(SimpleForecastTests, DefaultConstructor) {
+        1:    4-block  0
+call    0 returned 1
+------------------
+_ZN43SimpleForecastTests_DefaultConstructor_TestD0Ev:
+function _ZN43SimpleForecastTests_DefaultConstructor_TestD0Ev called 1 returned 100% blocks executed 100%
+        1:    4:TEST(SimpleForecastTests, DefaultConstructor) {
+        1:    4-block  0
+call    0 returned 1
+call    1 returned 1
+------------------
+_ZN43SimpleForecastTests_DefaultConstructor_TestD2Ev:
+function _ZN43SimpleForecastTests_DefaultConstructor_TestD2Ev called 1 returned 100% blocks executed 100%
+        1:    4:TEST(SimpleForecastTests, DefaultConstructor) {
+        1:    4-block  0
+call    0 returned 1
+------------------
+_ZN43SimpleForecastTests_DefaultConstructor_Test8TestBodyEv:
+function _ZN43SimpleForecastTests_DefaultConstructor_Test8TestBodyEv called 1 returned 100% blocks executed 25%
+        1:    4:TEST(SimpleForecastTests, DefaultConstructor) {
+        1:    5:    SimpleForecast forecast;
+        1:    5-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+       1*:    6:    EXPECT_EQ(forecast.getTimestamp(), 0);
+        1:    6-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:    6-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:    6-block  2
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:    6-block  3
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:    6-block  4
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:    6-block  5
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:    6-block  6
+call   19 never executed
+call   20 never executed
+        1:    6-block  7
+call   21 returned 1
+    $$$$$:    6-block  8
+    $$$$$:    6-block  9
+    $$$$$:    6-block 10
+call   22 never executed
+    $$$$$:    6-block 11
+    $$$$$:    6-block 12
+call   23 never executed
+    $$$$$:    6-block 13
+    $$$$$:    6-block 14
+call   24 never executed
+       1*:    7:    EXPECT_FLOAT_EQ(forecast.getMorningTemp(), 0.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:    7-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:    7-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:    7-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:    7-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:    7-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:    7-block  5
+call   19 never executed
+call   20 never executed
+        1:    7-block  6
+call   21 returned 1
+    $$$$$:    7-block  7
+call   22 never executed
+    $$$$$:    7-block  8
+    $$$$$:    7-block  9
+call   23 never executed
+    $$$$$:    7-block 10
+    $$$$$:    7-block 11
+call   24 never executed
+       1*:    8:    EXPECT_FLOAT_EQ(forecast.getDayTemp(), 0.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:    8-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:    8-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:    8-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:    8-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:    8-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:    8-block  5
+call   19 never executed
+call   20 never executed
+        1:    8-block  6
+call   21 returned 1
+    $$$$$:    8-block  7
+call   22 never executed
+    $$$$$:    8-block  8
+    $$$$$:    8-block  9
+call   23 never executed
+    $$$$$:    8-block 10
+    $$$$$:    8-block 11
+call   24 never executed
+       1*:    9:    EXPECT_FLOAT_EQ(forecast.getEveningTemp(), 0.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:    9-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:    9-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:    9-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:    9-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:    9-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:    9-block  5
+call   19 never executed
+call   20 never executed
+        1:    9-block  6
+call   21 returned 1
+    $$$$$:    9-block  7
+call   22 never executed
+    $$$$$:    9-block  8
+    $$$$$:    9-block  9
+call   23 never executed
+    $$$$$:    9-block 10
+    $$$$$:    9-block 11
+call   24 never executed
+       2*:   10:    EXPECT_EQ(forecast.getWeather(), "солнечно");
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   10-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   10-block  1
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   10-block  2
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   10-block  3
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   10-block  4
+call   19 never executed
+call   20 never executed
+        1:   10-block  5
+call   21 returned 1
+    $$$$$:   10-block  6
+    $$$$$:   10-block  7
+call   22 never executed
+    $$$$$:   10-block  8
+    $$$$$:   10-block  9
+call   23 never executed
+    $$$$$:   10-block 10
+    $$$$$:   10-block 11
+call   24 never executed
+       1*:   11:    EXPECT_FLOAT_EQ(forecast.getPrecipitation(), 0.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   11-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   11-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   11-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   11-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   11-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   11-block  5
+call   19 never executed
+call   20 never executed
+        1:   11-block  6
+call   21 returned 1
+    $$$$$:   11-block  7
+call   22 never executed
+    $$$$$:   11-block  8
+    $$$$$:   11-block  9
+call   23 never executed
+    $$$$$:   11-block 10
+    $$$$$:   11-block 11
+call   24 never executed
+        1:   12:}
+call    0 returned 1
+    $$$$$:   12-block  0
+call    1 never executed
+------------------
+        -:   13:
+        4:   14:TEST(SimpleForecastTests, ParameterizedConstructor) {
+        2:   15:    SimpleForecast forecast(1234567890, -5.0, 0.0, 5.0, "облачно", 0.0);
+       1*:   16:    EXPECT_EQ(forecast.getTimestamp(), 1234567890);
+       1*:   17:    EXPECT_FLOAT_EQ(forecast.getMorningTemp(), -5.0);
+       1*:   18:    EXPECT_FLOAT_EQ(forecast.getDayTemp(), 0.0);
+       1*:   19:    EXPECT_FLOAT_EQ(forecast.getEveningTemp(), 5.0);
+       2*:   20:    EXPECT_EQ(forecast.getWeather(), "облачно");
+       1*:   21:    EXPECT_FLOAT_EQ(forecast.getPrecipitation(), 0.0);
+        1:   22:}
+------------------
+_ZN49SimpleForecastTests_ParameterizedConstructor_TestC2Ev:
+function _ZN49SimpleForecastTests_ParameterizedConstructor_TestC2Ev called 1 returned 100% blocks executed 100%
+        1:   14:TEST(SimpleForecastTests, ParameterizedConstructor) {
+        1:   14-block  0
+call    0 returned 1
+------------------
+_ZN49SimpleForecastTests_ParameterizedConstructor_TestD0Ev:
+function _ZN49SimpleForecastTests_ParameterizedConstructor_TestD0Ev called 1 returned 100% blocks executed 100%
+        1:   14:TEST(SimpleForecastTests, ParameterizedConstructor) {
+        1:   14-block  0
+call    0 returned 1
+call    1 returned 1
+------------------
+_ZN49SimpleForecastTests_ParameterizedConstructor_TestD2Ev:
+function _ZN49SimpleForecastTests_ParameterizedConstructor_TestD2Ev called 1 returned 100% blocks executed 100%
+        1:   14:TEST(SimpleForecastTests, ParameterizedConstructor) {
+        1:   14-block  0
+call    0 returned 1
+------------------
+_ZN49SimpleForecastTests_ParameterizedConstructor_Test8TestBodyEv:
+function _ZN49SimpleForecastTests_ParameterizedConstructor_Test8TestBodyEv called 1 returned 100% blocks executed 26%
+        1:   14:TEST(SimpleForecastTests, ParameterizedConstructor) {
+        2:   15:    SimpleForecast forecast(1234567890, -5.0, 0.0, 5.0, "облачно", 0.0);
+        1:   15-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:   15-block  1
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 1
+    $$$$$:   15-block  2
+    $$$$$:   15-block  3
+       1*:   16:    EXPECT_EQ(forecast.getTimestamp(), 1234567890);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   16-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   16-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   16-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   16-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   16-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   16-block  5
+call   19 never executed
+call   20 never executed
+        1:   16-block  6
+call   21 returned 1
+    $$$$$:   16-block  7
+    $$$$$:   16-block  8
+    $$$$$:   16-block  9
+call   22 never executed
+    $$$$$:   16-block 10
+    $$$$$:   16-block 11
+call   23 never executed
+    $$$$$:   16-block 12
+    $$$$$:   16-block 13
+call   24 never executed
+       1*:   17:    EXPECT_FLOAT_EQ(forecast.getMorningTemp(), -5.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   17-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   17-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   17-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   17-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   17-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   17-block  5
+call   19 never executed
+call   20 never executed
+        1:   17-block  6
+call   21 returned 1
+    $$$$$:   17-block  7
+call   22 never executed
+    $$$$$:   17-block  8
+    $$$$$:   17-block  9
+call   23 never executed
+    $$$$$:   17-block 10
+    $$$$$:   17-block 11
+call   24 never executed
+       1*:   18:    EXPECT_FLOAT_EQ(forecast.getDayTemp(), 0.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   18-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   18-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   18-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   18-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   18-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   18-block  5
+call   19 never executed
+call   20 never executed
+        1:   18-block  6
+call   21 returned 1
+    $$$$$:   18-block  7
+call   22 never executed
+    $$$$$:   18-block  8
+    $$$$$:   18-block  9
+call   23 never executed
+    $$$$$:   18-block 10
+    $$$$$:   18-block 11
+call   24 never executed
+       1*:   19:    EXPECT_FLOAT_EQ(forecast.getEveningTemp(), 5.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   19-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   19-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   19-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   19-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   19-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   19-block  5
+call   19 never executed
+call   20 never executed
+        1:   19-block  6
+call   21 returned 1
+    $$$$$:   19-block  7
+call   22 never executed
+    $$$$$:   19-block  8
+    $$$$$:   19-block  9
+call   23 never executed
+    $$$$$:   19-block 10
+    $$$$$:   19-block 11
+call   24 never executed
+       2*:   20:    EXPECT_EQ(forecast.getWeather(), "облачно");
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   20-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   20-block  1
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   20-block  2
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   20-block  3
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   20-block  4
+call   19 never executed
+call   20 never executed
+        1:   20-block  5
+call   21 returned 1
+    $$$$$:   20-block  6
+    $$$$$:   20-block  7
+call   22 never executed
+    $$$$$:   20-block  8
+    $$$$$:   20-block  9
+call   23 never executed
+    $$$$$:   20-block 10
+    $$$$$:   20-block 11
+call   24 never executed
+       1*:   21:    EXPECT_FLOAT_EQ(forecast.getPrecipitation(), 0.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   21-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   21-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   21-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   21-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   21-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   21-block  5
+call   19 never executed
+call   20 never executed
+        1:   21-block  6
+call   21 returned 1
+    $$$$$:   21-block  7
+call   22 never executed
+    $$$$$:   21-block  8
+    $$$$$:   21-block  9
+call   23 never executed
+    $$$$$:   21-block 10
+    $$$$$:   21-block 11
+call   24 never executed
+        1:   22:}
+call    0 returned 1
+    $$$$$:   22-block  0
+call    1 never executed
+------------------
+        -:   23:
+        4:   24:TEST(SimpleForecastTests, AverageTemperature) {
+        2:   25:    SimpleForecast forecast(1234567890, 10.0, 15.0, 20.0, "солнечно", 0.0);
+       1*:   26:    EXPECT_FLOAT_EQ(forecast.getAverageTemp(), 15.0);
+        1:   27:}
+------------------
+_ZN43SimpleForecastTests_AverageTemperature_TestC2Ev:
+function _ZN43SimpleForecastTests_AverageTemperature_TestC2Ev called 1 returned 100% blocks executed 100%
+        1:   24:TEST(SimpleForecastTests, AverageTemperature) {
+        1:   24-block  0
+call    0 returned 1
+------------------
+_ZN43SimpleForecastTests_AverageTemperature_TestD0Ev:
+function _ZN43SimpleForecastTests_AverageTemperature_TestD0Ev called 1 returned 100% blocks executed 100%
+        1:   24:TEST(SimpleForecastTests, AverageTemperature) {
+        1:   24-block  0
+call    0 returned 1
+call    1 returned 1
+------------------
+_ZN43SimpleForecastTests_AverageTemperature_TestD2Ev:
+function _ZN43SimpleForecastTests_AverageTemperature_TestD2Ev called 1 returned 100% blocks executed 100%
+        1:   24:TEST(SimpleForecastTests, AverageTemperature) {
+        1:   24-block  0
+call    0 returned 1
+------------------
+_ZN43SimpleForecastTests_AverageTemperature_Test8TestBodyEv:
+function _ZN43SimpleForecastTests_AverageTemperature_Test8TestBodyEv called 1 returned 100% blocks executed 35%
+        1:   24:TEST(SimpleForecastTests, AverageTemperature) {
+        2:   25:    SimpleForecast forecast(1234567890, 10.0, 15.0, 20.0, "солнечно", 0.0);
+        1:   25-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:   25-block  1
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 1
+    $$$$$:   25-block  2
+    $$$$$:   25-block  3
+       1*:   26:    EXPECT_FLOAT_EQ(forecast.getAverageTemp(), 15.0);
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   26-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   26-block  1
+call    6 returned 1
+branch  7 taken 0 (fallthrough)
+branch  8 taken 1
+    %%%%%:   26-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   26-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   26-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   26-block  5
+call   19 never executed
+call   20 never executed
+        1:   26-block  6
+call   21 returned 1
+    $$$$$:   26-block  7
+call   22 never executed
+    $$$$$:   26-block  8
+    $$$$$:   26-block  9
+call   23 never executed
+    $$$$$:   26-block 10
+    $$$$$:   26-block 11
+call   24 never executed
+        1:   27:}
+call    0 returned 1
+    $$$$$:   27-block  0
+call    1 never executed
+------------------
+        -:   28:
+        4:   29:TEST(SimpleForecastTests, InvalidForecast) {
+        2:   30:    SimpleForecast forecast1(1234567890, 10.0, 15.0, 20.0, "солнечно", 5.0);
+       1*:   31:    EXPECT_TRUE(forecast1.isInvalidForecast());
+        -:   32:
+        3:   33:    SimpleForecast forecast2(1234567890, 10.0, 15.0, 20.0, "снег", 0.0);
+       1*:   34:    EXPECT_TRUE(forecast2.isInvalidForecast());
+        -:   35:
+        3:   36:    SimpleForecast forecast3(1234567890, -5.0, 0.0, 5.0, "дождь", 10.0);
+       1*:   37:    EXPECT_FALSE(forecast3.isInvalidForecast());
+        1:   38:}
+------------------
+_ZN40SimpleForecastTests_InvalidForecast_TestC2Ev:
+function _ZN40SimpleForecastTests_InvalidForecast_TestC2Ev called 1 returned 100% blocks executed 100%
+        1:   29:TEST(SimpleForecastTests, InvalidForecast) {
+        1:   29-block  0
+call    0 returned 1
+------------------
+_ZN40SimpleForecastTests_InvalidForecast_TestD0Ev:
+function _ZN40SimpleForecastTests_InvalidForecast_TestD0Ev called 1 returned 100% blocks executed 100%
+        1:   29:TEST(SimpleForecastTests, InvalidForecast) {
+        1:   29-block  0
+call    0 returned 1
+call    1 returned 1
+------------------
+_ZN40SimpleForecastTests_InvalidForecast_TestD2Ev:
+function _ZN40SimpleForecastTests_InvalidForecast_TestD2Ev called 1 returned 100% blocks executed 100%
+        1:   29:TEST(SimpleForecastTests, InvalidForecast) {
+        1:   29-block  0
+call    0 returned 1
+------------------
+_ZN40SimpleForecastTests_InvalidForecast_Test8TestBodyEv:
+function _ZN40SimpleForecastTests_InvalidForecast_Test8TestBodyEv called 1 returned 100% blocks executed 29%
+        1:   29:TEST(SimpleForecastTests, InvalidForecast) {
+        2:   30:    SimpleForecast forecast1(1234567890, 10.0, 15.0, 20.0, "солнечно", 5.0);
+        1:   30-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:   30-block  1
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 1
+    $$$$$:   30-block  2
+    $$$$$:   30-block  3
+       1*:   31:    EXPECT_TRUE(forecast1.isInvalidForecast());
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   31-block  0
+call    3 returned 1
+call    4 returned 1
+branch  5 taken 0 (fallthrough)
+branch  6 taken 1
+    %%%%%:   31-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   31-block  2
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+    %%%%%:   31-block  3
+call   13 never executed
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   31-block  4
+call   17 never executed
+branch 18 never executed
+branch 19 never executed
+    %%%%%:   31-block  5
+call   20 never executed
+call   21 never executed
+call   22 never executed
+        1:   31-block  6
+call   23 returned 1
+    $$$$$:   31-block  7
+call   24 never executed
+    $$$$$:   31-block  8
+    $$$$$:   31-block  9
+call   25 never executed
+    $$$$$:   31-block 10
+    $$$$$:   31-block 11
+call   26 never executed
+    $$$$$:   31-block 12
+    $$$$$:   31-block 13
+call   27 never executed
+        -:   32:
+        3:   33:    SimpleForecast forecast2(1234567890, 10.0, 15.0, 20.0, "снег", 0.0);
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:   33-block  0
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 1
+call    8 returned 1
+    $$$$$:   33-block  1
+    $$$$$:   33-block  2
+    $$$$$:   33-block  3
+call    9 never executed
+       1*:   34:    EXPECT_TRUE(forecast2.isInvalidForecast());
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   34-block  0
+call    3 returned 1
+call    4 returned 1
+branch  5 taken 0 (fallthrough)
+branch  6 taken 1
+    %%%%%:   34-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   34-block  2
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+    %%%%%:   34-block  3
+call   13 never executed
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   34-block  4
+call   17 never executed
+branch 18 never executed
+branch 19 never executed
+    %%%%%:   34-block  5
+call   20 never executed
+call   21 never executed
+call   22 never executed
+        1:   34-block  6
+call   23 returned 1
+    $$$$$:   34-block  7
+call   24 never executed
+    $$$$$:   34-block  8
+    $$$$$:   34-block  9
+call   25 never executed
+    $$$$$:   34-block 10
+    $$$$$:   34-block 11
+call   26 never executed
+    $$$$$:   34-block 12
+    $$$$$:   34-block 13
+call   27 never executed
+        -:   35:
+        3:   36:    SimpleForecast forecast3(1234567890, -5.0, 0.0, 5.0, "дождь", 10.0);
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:   36-block  0
+call    4 returned 1
+branch  5 taken 1 (fallthrough)
+branch  6 taken 0 (throw)
+call    7 returned 1
+call    8 returned 1
+    $$$$$:   36-block  1
+    $$$$$:   36-block  2
+    $$$$$:   36-block  3
+call    9 never executed
+       1*:   37:    EXPECT_FALSE(forecast3.isInvalidForecast());
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   37-block  0
+call    3 returned 1
+call    4 returned 1
+branch  5 taken 0 (fallthrough)
+branch  6 taken 1
+    %%%%%:   37-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   37-block  2
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+    %%%%%:   37-block  3
+call   13 never executed
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   37-block  4
+call   17 never executed
+branch 18 never executed
+branch 19 never executed
+    %%%%%:   37-block  5
+call   20 never executed
+call   21 never executed
+call   22 never executed
+        1:   37-block  6
+call   23 returned 1
+    $$$$$:   37-block  7
+call   24 never executed
+    $$$$$:   37-block  8
+    $$$$$:   37-block  9
+call   25 never executed
+    $$$$$:   37-block 10
+    $$$$$:   37-block 11
+call   26 never executed
+    $$$$$:   37-block 12
+    $$$$$:   37-block 13
+call   27 never executed
+        1:   38:}
+call    0 returned 1
+    $$$$$:   38-block  0
+call    1 never executed
+------------------

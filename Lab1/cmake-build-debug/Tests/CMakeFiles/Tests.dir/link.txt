@@ -1,0 +1,1 @@
+/usr/bin/c++ -g --coverage CMakeFiles/Tests.dir/source/test_CrosswordSolver.cpp.o -o Tests  ../lib/libgtest_main.a ../CrosswordSolver/libCrosswordSolver.a ../lib/libgtest.a 

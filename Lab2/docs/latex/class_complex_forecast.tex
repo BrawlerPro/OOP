@@ -1,0 +1,316 @@
+\doxysection{Complex\+Forecast Class Reference}
+\hypertarget{class_complex_forecast}{}\label{class_complex_forecast}\index{ComplexForecast@{ComplexForecast}}
+
+
+Класс для управления коллекцией суточных прогнозов погоды.  
+
+
+
+
+{\ttfamily \#include $<$Complex\+Forecast.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_complex_forecast_a59420ec20c75f0100dc8671616026a88}\label{class_complex_forecast_a59420ec20c75f0100dc8671616026a88} 
+{\bfseries Complex\+Forecast} ()
+\begin{DoxyCompactList}\small\item\em Конструктор по умолчанию. Инициализирует объект с начальной ёмкостью для хранения прогнозов. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_complex_forecast_a3edeebdccdd4263d5284741bdcb0b3c5}{Complex\+Forecast}} (const \mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} \texorpdfstring{$\ast$}{*}forecasts\+Array, std\+::size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Конструктор с инициализацией заданным количеством прогнозов. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_complex_forecast_a3d5dab6998cf8a4ba28266c195865bf2}{Complex\+Forecast}} (const \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&other)
+\begin{DoxyCompactList}\small\item\em Копирующий конструктор. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_complex_forecast_abf1beb7fd16b3dfc8b47b2dcc4b695fa}{Complex\+Forecast}} (\mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Перемещающий конструктор. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \& \mbox{\hyperlink{class_complex_forecast_a877ada9797de96b7016f5f9779cacc73}{operator=}} (const \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&other)
+\begin{DoxyCompactList}\small\item\em Оператор присваивания для копирования. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \& \mbox{\hyperlink{class_complex_forecast_aa28dfc0edc231a4d9feedc65babf3ebd}{operator=}} (\mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&\&other) noexcept
+\begin{DoxyCompactList}\small\item\em Оператор присваивания для перемещения. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_complex_forecast_af848ca9fe30d32539333085f9a3b4d7f}{\texorpdfstring{$\sim$}{\string~}\+Complex\+Forecast}} ()
+\begin{DoxyCompactList}\small\item\em Деструктор. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_complex_forecast_a4371cb09018f2cca8c3f99813edd4106}{add\+Forecast}} (const \mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} \&forecast)
+\begin{DoxyCompactList}\small\item\em Добавить новый суточный прогноз в коллекцию. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} \& \mbox{\hyperlink{class_complex_forecast_ad384ffe10364ea88622532f77a2ec5f8}{operator\mbox{[}$\,$\mbox{]}}} (std\+::size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Получить прогноз по индексу. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_complex_forecast_a2cdd6276e3bd7f0ca8ac2276cf2ae7b0}{remove\+Forecast}} (std\+::size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Удалить прогноз по индексу. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} \mbox{\hyperlink{class_complex_forecast_a8330e95721f68e75a8b61b0f507f89fa}{find\+Coldest\+Day}} () const
+\begin{DoxyCompactList}\small\item\em Найти самый холодный день. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} \mbox{\hyperlink{class_complex_forecast_abf6c88c16dfdf9191c1cfa4d63c0b89f}{find\+Nearest\+Sunny\+Day}} (long current\+Timestamp) const
+\begin{DoxyCompactList}\small\item\em Найти ближайший солнечный день от текущей даты. \end{DoxyCompactList}\item 
+\Hypertarget{class_complex_forecast_a2e6a67b76c839a5aba2ec52a7b8927e9}\label{class_complex_forecast_a2e6a67b76c839a5aba2ec52a7b8927e9} 
+void {\bfseries remove\+Invalid\+Forecasts} ()
+\begin{DoxyCompactList}\small\item\em Удалить все ошибочные прогнозы. \end{DoxyCompactList}\item 
+\Hypertarget{class_complex_forecast_ae887afa79feca8261caeb3661c866de2}\label{class_complex_forecast_ae887afa79feca8261caeb3661c866de2} 
+void {\bfseries sort\+Forecasts} ()
+\begin{DoxyCompactList}\small\item\em Сортировка прогнозов по дате. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_complex_forecast_ac8763b17bf240f905332df988abf08b2}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&forecast)
+\begin{DoxyCompactList}\small\item\em Оператор вывода в поток. \end{DoxyCompactList}\item 
+std\+::istream \& \mbox{\hyperlink{class_complex_forecast_acf660558178c58e731c4f87e9e58ff3e}{operator$>$$>$}} (std\+::istream \&in, \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&forecast)
+\begin{DoxyCompactList}\small\item\em Оператор ввода из потока. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс для управления коллекцией суточных прогнозов погоды. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_complex_forecast_a3edeebdccdd4263d5284741bdcb0b3c5}\label{class_complex_forecast_a3edeebdccdd4263d5284741bdcb0b3c5} 
+\index{ComplexForecast@{ComplexForecast}!ComplexForecast@{ComplexForecast}}
+\index{ComplexForecast@{ComplexForecast}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{ComplexForecast()}{ComplexForecast()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Complex\+Forecast\+::\+Complex\+Forecast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} \texorpdfstring{$\ast$}{*}}]{forecasts\+Array,  }\item[{std\+::size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Конструктор с инициализацией заданным количеством прогнозов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forecasts\+Array} & Массив суточных прогнозов. \\
+\hline
+{\em count} & Количество прогнозов.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & Если количество прогнозов меньше 1. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_complex_forecast_a3d5dab6998cf8a4ba28266c195865bf2}\label{class_complex_forecast_a3d5dab6998cf8a4ba28266c195865bf2} 
+\index{ComplexForecast@{ComplexForecast}!ComplexForecast@{ComplexForecast}}
+\index{ComplexForecast@{ComplexForecast}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{ComplexForecast()}{ComplexForecast()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Complex\+Forecast\+::\+Complex\+Forecast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Копирующий конструктор. 
+
+Создаёт копию другого объекта {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Другой объект {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}} для копирования. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_complex_forecast_abf1beb7fd16b3dfc8b47b2dcc4b695fa}\label{class_complex_forecast_abf1beb7fd16b3dfc8b47b2dcc4b695fa} 
+\index{ComplexForecast@{ComplexForecast}!ComplexForecast@{ComplexForecast}}
+\index{ComplexForecast@{ComplexForecast}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{ComplexForecast()}{ComplexForecast()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Complex\+Forecast\+::\+Complex\+Forecast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Перемещающий конструктор. 
+
+Перемещает данные из другого объекта {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Другой объект {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}} для перемещения. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_complex_forecast_af848ca9fe30d32539333085f9a3b4d7f}\label{class_complex_forecast_af848ca9fe30d32539333085f9a3b4d7f} 
+\index{ComplexForecast@{ComplexForecast}!````~ComplexForecast@{\texorpdfstring{$\sim$}{\string~}ComplexForecast}}
+\index{````~ComplexForecast@{\texorpdfstring{$\sim$}{\string~}ComplexForecast}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ComplexForecast()}{\string~ComplexForecast()}}
+{\footnotesize\ttfamily Complex\+Forecast\+::\texorpdfstring{$\sim$}{\string~}\+Complex\+Forecast (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Деструктор. 
+
+Освобождает динамически выделенную память. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_complex_forecast_a4371cb09018f2cca8c3f99813edd4106}\label{class_complex_forecast_a4371cb09018f2cca8c3f99813edd4106} 
+\index{ComplexForecast@{ComplexForecast}!addForecast@{addForecast}}
+\index{addForecast@{addForecast}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{addForecast()}{addForecast()}}
+{\footnotesize\ttfamily void Complex\+Forecast\+::add\+Forecast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} \&}]{forecast }\end{DoxyParamCaption})}
+
+
+
+Добавить новый суточный прогноз в коллекцию. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em forecast} & Новый суточный прогноз.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::bad\+\_\+alloc} & Если не удалось выделить память для нового прогноза. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_complex_forecast_a8330e95721f68e75a8b61b0f507f89fa}\label{class_complex_forecast_a8330e95721f68e75a8b61b0f507f89fa} 
+\index{ComplexForecast@{ComplexForecast}!findColdestDay@{findColdestDay}}
+\index{findColdestDay@{findColdestDay}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{findColdestDay()}{findColdestDay()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} Complex\+Forecast\+::find\+Coldest\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Найти самый холодный день. 
+
+\begin{DoxyReturn}{Returns}
+Прогноз с самой низкой средней температурой.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & Если коллекция прогнозов пуста. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_complex_forecast_abf6c88c16dfdf9191c1cfa4d63c0b89f}\label{class_complex_forecast_abf6c88c16dfdf9191c1cfa4d63c0b89f} 
+\index{ComplexForecast@{ComplexForecast}!findNearestSunnyDay@{findNearestSunnyDay}}
+\index{findNearestSunnyDay@{findNearestSunnyDay}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{findNearestSunnyDay()}{findNearestSunnyDay()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} Complex\+Forecast\+::find\+Nearest\+Sunny\+Day (\begin{DoxyParamCaption}\item[{long}]{current\+Timestamp }\end{DoxyParamCaption}) const}
+
+
+
+Найти ближайший солнечный день от текущей даты. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Timestamp} & Текущая дата (unix timestamp). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ближайший прогноз с солнечной погодой.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & Если нет ближайшего солнечного дня. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_complex_forecast_aa28dfc0edc231a4d9feedc65babf3ebd}\label{class_complex_forecast_aa28dfc0edc231a4d9feedc65babf3ebd} 
+\index{ComplexForecast@{ComplexForecast}!operator=@{operator=}}
+\index{operator=@{operator=}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \& Complex\+Forecast\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Оператор присваивания для перемещения. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Другой объект {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}} для перемещения. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ссылка на текущий объект {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}}. 
+\end{DoxyReturn}
+\Hypertarget{class_complex_forecast_a877ada9797de96b7016f5f9779cacc73}\label{class_complex_forecast_a877ada9797de96b7016f5f9779cacc73} 
+\index{ComplexForecast@{ComplexForecast}!operator=@{operator=}}
+\index{operator=@{operator=}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \& Complex\+Forecast\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Оператор присваивания для копирования. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Другой объект {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}} для копирования. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ссылка на текущий объект {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}}. 
+\end{DoxyReturn}
+\Hypertarget{class_complex_forecast_ad384ffe10364ea88622532f77a2ec5f8}\label{class_complex_forecast_ad384ffe10364ea88622532f77a2ec5f8} 
+\index{ComplexForecast@{ComplexForecast}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simple_forecast}{Simple\+Forecast}} \& Complex\+Forecast\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+
+
+Получить прогноз по индексу. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Индекс прогноза в коллекции. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ссылка на объект {\ttfamily \doxylink{class_simple_forecast}{Simple\+Forecast}}.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & Если индекс выходит за границы массива. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_complex_forecast_a2cdd6276e3bd7f0ca8ac2276cf2ae7b0}\label{class_complex_forecast_a2cdd6276e3bd7f0ca8ac2276cf2ae7b0} 
+\index{ComplexForecast@{ComplexForecast}!removeForecast@{removeForecast}}
+\index{removeForecast@{removeForecast}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{removeForecast()}{removeForecast()}}
+{\footnotesize\ttfamily void Complex\+Forecast\+::remove\+Forecast (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+
+
+Удалить прогноз по индексу. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Индекс прогноза для удаления.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & Если индекс выходит за границы массива. \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_complex_forecast_ac8763b17bf240f905332df988abf08b2}\label{class_complex_forecast_ac8763b17bf240f905332df988abf08b2} 
+\index{ComplexForecast@{ComplexForecast}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&}]{forecast }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Оператор вывода в поток. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Поток вывода. \\
+\hline
+{\em forecast} & Объект {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ссылка на поток вывода. 
+\end{DoxyReturn}
+\Hypertarget{class_complex_forecast_acf660558178c58e731c4f87e9e58ff3e}\label{class_complex_forecast_acf660558178c58e731c4f87e9e58ff3e} 
+\index{ComplexForecast@{ComplexForecast}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!ComplexForecast@{ComplexForecast}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$}{operator>>}}
+{\footnotesize\ttfamily std\+::istream \& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{in,  }\item[{\mbox{\hyperlink{class_complex_forecast}{Complex\+Forecast}} \&}]{forecast }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Оператор ввода из потока. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Поток ввода. \\
+\hline
+{\em forecast} & Объект {\ttfamily \doxylink{class_complex_forecast}{Complex\+Forecast}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ссылка на поток ввода. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Weather\+Report/include/\+Weather\+Report/Complex\+Forecast.\+h\item 
+Weather\+Report/source/Complex\+Forecast.\+cpp\end{DoxyCompactItemize}
