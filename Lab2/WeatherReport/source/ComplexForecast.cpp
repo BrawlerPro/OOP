@@ -1,9 +1,9 @@
 #include <WeatherReport/ComplexForecast.h>
-#include <algorithm>  // Для std::sort
+#include <algorithm>
 
 // Конструктор по умолчанию
 ComplexForecast::ComplexForecast() : size(0), capacity(10) {
-    forecasts = new SimpleForecast[capacity];  // Изначально выделяем место под 10 прогнозов
+    forecasts = new SimpleForecast[capacity];
 }
 
 // Конструктор с инициализацией
@@ -30,7 +30,7 @@ ComplexForecast::ComplexForecast(const ComplexForecast& other)
 // Перемещающий конструктор
 ComplexForecast::ComplexForecast(ComplexForecast&& other) noexcept
         : forecasts(other.forecasts), size(other.size), capacity(other.capacity) {
-    other.forecasts = nullptr;  // Установим указатель в nullptr
+    other.forecasts = nullptr;
     other.size = 0;
     other.capacity = 0;
 }
@@ -38,7 +38,7 @@ ComplexForecast::ComplexForecast(ComplexForecast&& other) noexcept
 // Оператор присваивания (копирующий)
 ComplexForecast& ComplexForecast::operator=(const ComplexForecast& other) {
     if (this != &other) {
-        delete[] forecasts;  // Удаляем старый массив
+        delete[] forecasts;
         size = other.size;
         capacity = other.capacity;
         forecasts = new SimpleForecast[capacity];
@@ -52,8 +52,8 @@ ComplexForecast& ComplexForecast::operator=(const ComplexForecast& other) {
 // Оператор присваивания (перемещающий)
 ComplexForecast& ComplexForecast::operator=(ComplexForecast&& other) noexcept {
     if (this != &other) {
-        delete[] forecasts;  // Освобождаем текущий массив
-        forecasts = other.forecasts;  // Перемещаем указатель
+        delete[] forecasts;
+        forecasts = other.forecasts;
         size = other.size;
         capacity = other.capacity;
 
@@ -67,7 +67,7 @@ ComplexForecast& ComplexForecast::operator=(ComplexForecast&& other) noexcept {
 
 // Деструктор
 ComplexForecast::~ComplexForecast() {
-    delete[] forecasts;  // Освобождаем память, выделенную для массива
+    delete[] forecasts;
 }
 
 // Увеличение ёмкости массива
@@ -77,16 +77,16 @@ void ComplexForecast::resize() {
     for (std::size_t i = 0; i < size; ++i) {
         newForecasts[i] = forecasts[i];
     }
-    delete[] forecasts;  // Освобождаем старый массив
-    forecasts = newForecasts;  // Перенаправляем указатель
+    delete[] forecasts;
+    forecasts = newForecasts;
 }
 
 // Добавление нового прогноза
 void ComplexForecast::addForecast(const SimpleForecast& forecast) {
     if (size == capacity) {
-        resize();  // Увеличиваем массив, если нужно
+        resize();
     }
-    forecasts[size++] = forecast;  // Добавляем новый прогноз
+    forecasts[size++] = forecast;
 }
 
 // Получение прогноза по индексу
@@ -103,9 +103,9 @@ void ComplexForecast::removeForecast(std::size_t index) {
         throw std::out_of_range("Неверный индекс!");
     }
     for (std::size_t i = index; i < size - 1; ++i) {
-        forecasts[i] = forecasts[i + 1];  // Сдвигаем прогнозы влево
+        forecasts[i] = forecasts[i + 1];
     }
-    --size;  // Уменьшаем размер
+    --size;
 }
 
 // Поиск самого холодного дня
@@ -113,10 +113,10 @@ SimpleForecast ComplexForecast::findColdestDay() const {
     if (size == 0) {
         throw std::runtime_error("Нет прогнозов для анализа.");
     }
-    SimpleForecast coldest = forecasts[0];  // Предполагаем, что первый прогноз - самый холодный
+    SimpleForecast coldest = forecasts[0];
     for (std::size_t i = 1; i < size; ++i) {
         if (forecasts[i].getAverageTemp() < coldest.getAverageTemp()) {
-            coldest = forecasts[i];  // Обновляем самый холодный прогноз
+            coldest = forecasts[i];
         }
     }
     return coldest;
@@ -126,7 +126,7 @@ SimpleForecast ComplexForecast::findColdestDay() const {
 SimpleForecast ComplexForecast::findNearestSunnyDay(long currentTimestamp) const {
     for (std::size_t i = 0; i < size; ++i) {
         if (forecasts[i].getTimestamp() > currentTimestamp && forecasts[i].getWeather() == "солнечно") {
-            return forecasts[i];  // Возвращаем ближайший солнечный день
+            return forecasts[i];
         }
     }
     throw std::runtime_error("Нет ближайшего солнечного дня.");
@@ -137,10 +137,10 @@ void ComplexForecast::removeInvalidForecasts() {
     std::size_t validCount = 0;
     for (std::size_t i = 0; i < size; ++i) {
         if (!forecasts[i].isInvalidForecast()) {
-            forecasts[validCount++] = forecasts[i];  // Копируем валидные прогнозы
+            forecasts[validCount++] = forecasts[i];
         }
     }
-    size = validCount;  // Обновляем размер
+    size = validCount;
 }
 
 // Сортировка прогнозов по дате
@@ -161,7 +161,7 @@ std::ostream& operator<<(std::ostream& out, const ComplexForecast& forecast) {
 // Оператор ввода
 std::istream& operator>>(std::istream& in, ComplexForecast& forecast) {
     SimpleForecast temp;
-    while (in >> temp) {  // Читаем прогнозы из потока
+    while (in >> temp) {
         forecast.addForecast(temp);
     }
     return in;

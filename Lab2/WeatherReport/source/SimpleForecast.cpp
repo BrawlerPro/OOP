@@ -130,7 +130,7 @@ std::istream &operator>>(std::istream &in, SimpleForecast &forecast) {
 }
 
 std::ostream &operator<<(std::ostream &out, const SimpleForecast &forecast) {
-    out << "Дата: " << SimpleForecast::getReadableDate(forecast.getTimestamp()) << "\n"  // Статический вызов
+    out << "Дата: " << SimpleForecast::getReadableDate(forecast.getTimestamp()) << "\n"
         << "Температура утром: " << forecast.getMorningTemp() << " °C\n"
         << "Температура днем: " << forecast.getDayTemp() << " °C\n"
         << "Температура вечером: " << forecast.getEveningTemp() << " °C\n"

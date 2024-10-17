@@ -169,6 +169,7 @@ public:
      */
     [[nodiscard]] float getAverageTemp() const;
 
+    // --- Операторы ---
     /**
      * @brief Оператор += для объединения двух прогнозов за одну дату.
      *
@@ -180,6 +181,22 @@ public:
      * @throw std::invalid_argument Если прогнозы относятся к разным датам.
      */
     SimpleForecast& operator+=(const SimpleForecast &other);
+
+    /**
+     * @brief Оператор < для сравнения прогнозов по дате.
+     *
+     * @param other Другой прогноз для сравнения.
+     * @return true Если дата текущего прогноза меньше даты другого прогноза.
+     */
+    bool operator<(const SimpleForecast &other) const;
+
+    /**
+     * @brief Оператор == для сравнения прогнозов по дате.
+     *
+     * @param other Другой прогноз для сравнения.
+     * @return true Если дата обоих прогнозов совпадает.
+     */
+    bool operator==(const SimpleForecast &other) const;
 
     // --- Операторы ввода и вывода ---
     /**
@@ -199,23 +216,6 @@ public:
      * @return Ссылка на выходной поток.
      */
     friend std::ostream& operator<<(std::ostream &out, const SimpleForecast &forecast);
-
-    // --- Операторы сравнения ---
-    /**
-     * @brief Оператор < для сравнения прогнозов по дате.
-     *
-     * @param other Другой прогноз для сравнения.
-     * @return true Если дата текущего прогноза меньше даты другого прогноза.
-     */
-    bool operator<(const SimpleForecast &other) const;
-
-    /**
-     * @brief Оператор == для сравнения прогнозов по дате.
-     *
-     * @param other Другой прогноз для сравнения.
-     * @return true Если дата обоих прогнозов совпадает.
-     */
-    bool operator==(const SimpleForecast &other) const;
 };
 
 #endif // SIMPLEFORECAST_H
