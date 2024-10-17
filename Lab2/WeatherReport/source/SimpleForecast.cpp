@@ -63,17 +63,17 @@ std::string SimpleForecast::getReadableDate(long timestamp)
 
 
 // Сеттеры
-void SimpleForecast::setTimestamp(long timestamp) { this->timestamp = timestamp; }
+void SimpleForecast::setTimestamp(long temp) { timestamp = temp; }
 
-void SimpleForecast::setMorningTemp(float temp) { this->morningTemp = temp; }
+void SimpleForecast::setMorningTemp(float temp) { morningTemp = temp; }
 
-void SimpleForecast::setDayTemp(float temp) { this->dayTemp = temp; }
+void SimpleForecast::setDayTemp(float temp) { dayTemp = temp; }
 
-void SimpleForecast::setEveningTemp(float temp) { this->eveningTemp = temp; }
+void SimpleForecast::setEveningTemp(float temp) { eveningTemp = temp; }
 
-void SimpleForecast::setWeather(const std::string &weather) { this->weather = weather; }
+void SimpleForecast::setWeather(const std::string &temp) { weather = temp; }
 
-void SimpleForecast::setPrecipitation(float precipitation) { this->precipitation = precipitation; }
+void SimpleForecast::setPrecipitation(float temp) { precipitation = temp; }
 
 // Проверка, является ли прогноз ошибочным
 bool SimpleForecast::isInvalidForecast() const {
@@ -96,18 +96,18 @@ SimpleForecast &SimpleForecast::operator+=(const SimpleForecast &other) {
     if (this->timestamp != other.timestamp) {
         throw std::invalid_argument("Прогнозы должны быть за одну и ту же дату!");
     }
-    this->morningTemp = (this->morningTemp + other.morningTemp) / 2;
-    this->dayTemp = (this->dayTemp + other.dayTemp) / 2;
-    this->eveningTemp = (this->eveningTemp + other.eveningTemp) / 2;
-    this->precipitation = (this->precipitation + other.precipitation) / 2;
+    morningTemp = (morningTemp + other.morningTemp) / 2;
+    dayTemp = (dayTemp + other.dayTemp) / 2;
+    eveningTemp = (eveningTemp + other.eveningTemp) / 2;
+    precipitation = (precipitation + other.precipitation) / 2;
 
-    if (this->weather == "солнечно" &&
+    if (weather == "солнечно" &&
         (other.weather == "облачно" || other.weather == "дождь" || other.weather == "снег")) {
-        this->weather = other.weather;
-    } else if (this->weather == "облачно" && (other.weather == "дождь" || other.weather == "снег")) {
-        this->weather = other.weather;
-    } else if (this->weather == "дождь" && other.weather == "снег") {
-        this->weather = other.weather;
+        weather = other.weather;
+    } else if (weather == "облачно" && (other.weather == "дождь" || other.weather == "снег")) {
+        weather = other.weather;
+    } else if (weather == "дождь" && other.weather == "снег") {
+        weather = other.weather;
     }
 
     return *this;
@@ -115,11 +115,11 @@ SimpleForecast &SimpleForecast::operator+=(const SimpleForecast &other) {
 
 // Операторы сравнения
 bool SimpleForecast::operator<(const SimpleForecast &other) const {
-    return this->timestamp < other.timestamp;
+    return timestamp < other.timestamp;
 }
 
 bool SimpleForecast::operator==(const SimpleForecast &other) const {
-    return this->timestamp == other.timestamp;
+    return timestamp == other.timestamp;
 }
 
 // Операторы ввода/вывода
@@ -130,7 +130,7 @@ std::istream &operator>>(std::istream &in, SimpleForecast &forecast) {
 }
 
 std::ostream &operator<<(std::ostream &out, const SimpleForecast &forecast) {
-    out << "Дата: " << SimpleForecast::getReadableDate(forecast.getTimestamp()) << "\n"
+    out << "Дата: " << SimpleForecast::getReadableDate(forecast.getTimestamp()) << forecast.getTimestamp() << "\n"
         << "Температура утром: " << forecast.getMorningTemp() << " °C\n"
         << "Температура днем: " << forecast.getDayTemp() << " °C\n"
         << "Температура вечером: " << forecast.getEveningTemp() << " °C\n"

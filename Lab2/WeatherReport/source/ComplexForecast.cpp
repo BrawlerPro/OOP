@@ -8,11 +8,13 @@ ComplexForecast::ComplexForecast() : size(0), capacity(10) {
 
 // Конструктор с инициализацией
 ComplexForecast::ComplexForecast(const SimpleForecast* forecastsArray, std::size_t count)
-        : size(count), capacity(count) {
+{
     if (count < 1) {
         throw std::invalid_argument("Количество прогнозов должно быть больше 0.");
     }
-    forecasts = new SimpleForecast[capacity];
+    forecasts = new SimpleForecast[count];
+    size = count;
+    capacity = count;
     for (std::size_t i = 0; i < size; ++i) {
         forecasts[i] = forecastsArray[i];
     }
@@ -20,12 +22,16 @@ ComplexForecast::ComplexForecast(const SimpleForecast* forecastsArray, std::size
 
 // Копирующий конструктор
 ComplexForecast::ComplexForecast(const ComplexForecast& other)
-        : size(other.size), capacity(other.capacity) {
-    forecasts = new SimpleForecast[capacity];
+{
+    forecasts = new SimpleForecast[other.capacity];
+    size = other.size;
+    capacity = other.capacity;
     for (std::size_t i = 0; i < size; ++i) {
         forecasts[i] = other.forecasts[i];
     }
 }
+
+
 
 // Перемещающий конструктор
 ComplexForecast::ComplexForecast(ComplexForecast&& other) noexcept
@@ -39,9 +45,9 @@ ComplexForecast::ComplexForecast(ComplexForecast&& other) noexcept
 ComplexForecast& ComplexForecast::operator=(const ComplexForecast& other) {
     if (this != &other) {
         delete[] forecasts;
+        forecasts = new SimpleForecast[other.capacity];
         size = other.size;
         capacity = other.capacity;
-        forecasts = new SimpleForecast[capacity];
         for (std::size_t i = 0; i < size; ++i) {
             forecasts[i] = other.forecasts[i];
         }
@@ -72,8 +78,8 @@ ComplexForecast::~ComplexForecast() {
 
 // Увеличение ёмкости массива
 void ComplexForecast::resize() {
+    auto* newForecasts = new SimpleForecast[capacity * 2];
     capacity *= 2;
-    auto* newForecasts = new SimpleForecast[capacity];
     for (std::size_t i = 0; i < size; ++i) {
         newForecasts[i] = forecasts[i];
     }
