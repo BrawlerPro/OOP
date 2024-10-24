@@ -8,9 +8,9 @@
  * @return SimpleForecast Объект прогноза погоды.
  */
 SimpleForecast inputForecast() {
-    long timestamp;
+    std::time_t timestamp;
     float morningTemp, dayTemp, eveningTemp, precipitation;
-    std::string weather;
+    Weather weather;
 
     std::cout << "Введите данные для прогноза:\n";
     std::cout << "Дата (unix timestamp): ";
@@ -43,26 +43,26 @@ SimpleForecast inputForecast() {
 
     switch (choice) {
         case 1:
-            weather = "солнечно";
+            weather = Weather::Sunny;
             break;
         case 2:
-            weather = "облачно";
+            weather = Weather::Cloudy;
             break;
         case 3:
-            weather = "дождь";
+            weather = Weather::Rain;
             break;
         case 4:
-            weather = "снег";
+            weather = Weather::Snow;
             break;
         case 5:
-            weather = "ветрено";
+            weather = Weather::Windy;
             break;
         case 6:
-            weather = "туман";
+            weather = Weather::Fog;
             break;
         default:
             std::cout << "Некорректный выбор, будет установлено значение по умолчанию: солнечно.\n";
-            weather = "солнечно";
+            weather = Weather::Sunny;
             break;
     }
 

@@ -3,6 +3,19 @@
 
 #include <string>
 #include <iostream>
+#include <chrono>
+
+/**
+ * @brief Перечисление для представления погодных явлений.(солнечно, облачно, дождь, снег, ветрено, туман)
+ */
+enum class Weather {
+    Sunny,
+    Cloudy,
+    Rain,
+    Snow,
+    Windy,
+    Fog
+};
 
 /**
  * @brief Класс для представления суточного прогноза погоды.
@@ -12,11 +25,11 @@
  */
 class SimpleForecast {
 private:
-    long timestamp;          ///< Дата прогноза (unix timestamp)
+    std::chrono::time_point<std::chrono::system_clock> timestamp;;          ///< Дата прогноза (unix timestamp)
     float morningTemp;       ///< Температура утром (в градусах Цельсия)
     float dayTemp;           ///< Температура днем (в градусах Цельсия)
     float eveningTemp;       ///< Температура вечером (в градусах Цельсия)
-    std::string weather;     ///< Погодное явление (солнечно, облачно, дождь, снег)
+    Weather weather;         ///< Погодное явление
     float precipitation;     ///< Количество осадков (в мм)
 
 public:
@@ -36,12 +49,11 @@ public:
      * @param morningTemp Температура утром.
      * @param dayTemp Температура днем.
      * @param eveningTemp Температура вечером.
-     * @param weather Погодное явление (солнечно, облачно, дождь, снег).
+     * @param weather Погодное явление (солнечно, облачно, дождь, снег, ветрено, туман).
      * @param precipitation Количество осадков (в мм).
      *
-     * @throw std::invalid_argument Если температуры выходят за допустимые пределы [-273, +60] градусов или количество осадков превышает 1500 мм.
      */
-    SimpleForecast(long timestamp, float morningTemp, float dayTemp, float eveningTemp, std::string weather, float precipitation);
+    SimpleForecast(std::time_t timestamp, float morningTemp, float dayTemp, float eveningTemp, Weather weather, float precipitation);
 
     /**
      * @brief Конструктор с автоматическим выбором погодного явления.
@@ -54,9 +66,8 @@ public:
      * @param eveningTemp Температура вечером.
      * @param precipitation Количество осадков (в мм).
      *
-     * @throw std::invalid_argument Если температуры выходят за допустимые пределы [-273, +60] градусов или количество осадков превышает 1500 мм.
      */
-    SimpleForecast(long timestamp, float morningTemp, float dayTemp, float eveningTemp, float precipitation);
+    SimpleForecast(std::time_t timestamp, float morningTemp, float dayTemp, float eveningTemp, float precipitation);
 
     // --- Геттеры ---
     /**
@@ -64,7 +75,7 @@ public:
      *
      * @return Дата прогноза (unix timestamp).
      */
-    [[nodiscard]] long getTimestamp() const;
+    [[nodiscard]] std::time_t getTimestamp() const;
 
     /**
      * @brief Получить температуру утром.
@@ -92,7 +103,7 @@ public:
      *
      * @return Погодное явление (солнечно, облачно, дождь или снег).
      */
-    [[nodiscard]] std::string getWeather() const;
+    [[nodiscard]] Weather getWeather() const;
 
     /**
      * @brief Получить количество осадков.
@@ -101,20 +112,13 @@ public:
      */
     [[nodiscard]] float getPrecipitation() const;
 
-    /**
-    * @brief Получить дату в читаемом формате.
-       *
-    * @return Дата в строковом формате.("%Y-%m-%d %H:%M:%S")
-    */
-    static std::string getReadableDate(long timestamp);
-
     // --- Сеттеры ---
     /**
      * @brief Установить дату прогноза.
      *
      * @param timestamp Дата прогноза (unix timestamp).
      */
-    void setTimestamp(long timestamp);
+    void setTimestamp(std::time_t timestamp);
 
     /**
      * @brief Установить температуру утром.
@@ -142,7 +146,7 @@ public:
      *
      * @param weather Погодное явление (солнечно, облачно, дождь, снег).
      */
-    void setWeather(const std::string &weather);
+    void setWeather(Weather weather);
 
     /**
      * @brief Установить количество осадков.

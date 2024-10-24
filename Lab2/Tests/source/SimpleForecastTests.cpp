@@ -1,38 +1,65 @@
-#include <WeatherReport/SimpleForecast.h>
 #include <gtest/gtest.h>
+#include <WeatherReport/SimpleForecast.h>
 
-TEST(SimpleForecastTests, DefaultConstructor) {
+// Тесты для конструктора по умолчанию
+TEST(SimpleForecastTest, DefaultConstructor) {
     SimpleForecast forecast;
-    EXPECT_EQ(forecast.getTimestamp(), 0);
-    EXPECT_FLOAT_EQ(forecast.getMorningTemp(), 0.0);
-    EXPECT_FLOAT_EQ(forecast.getDayTemp(), 0.0);
-    EXPECT_FLOAT_EQ(forecast.getEveningTemp(), 0.0);
-    EXPECT_EQ(forecast.getWeather(), "солнечно");
-    EXPECT_FLOAT_EQ(forecast.getPrecipitation(), 0.0);
+    EXPECT_EQ(forecast.getMorningTemp(), 0);
+    EXPECT_EQ(forecast.getDayTemp(), 0);
+    EXPECT_EQ(forecast.getEveningTemp(), 0);
+    EXPECT_EQ(forecast.getWeather(), Weather::Sunny);
+    EXPECT_EQ(forecast.getPrecipitation(), 0);
 }
 
-TEST(SimpleForecastTests, ParameterizedConstructor) {
-    SimpleForecast forecast(1234567890, -5.0, 0.0, 5.0, "облачно", 0.0);
-    EXPECT_EQ(forecast.getTimestamp(), 1234567890);
-    EXPECT_FLOAT_EQ(forecast.getMorningTemp(), -5.0);
-    EXPECT_FLOAT_EQ(forecast.getDayTemp(), 0.0);
-    EXPECT_FLOAT_EQ(forecast.getEveningTemp(), 5.0);
-    EXPECT_EQ(forecast.getWeather(), "облачно");
-    EXPECT_FLOAT_EQ(forecast.getPrecipitation(), 0.0);
+// Тесты для конструктора с параметрами
+TEST(SimpleForecastTest, ParameterizedConstructor) {
+    SimpleForecast forecast(1625256000, 20.0f, 25.0f, 15.0f, Weather::Rain, 10.0f);
+    EXPECT_EQ(forecast.getTimestamp(), 1625256000);
+    EXPECT_FLOAT_EQ(forecast.getMorningTemp(), 20.0f);
+    EXPECT_FLOAT_EQ(forecast.getDayTemp(), 25.0f);
+    EXPECT_FLOAT_EQ(forecast.getEveningTemp(), 15.0f);
+    EXPECT_EQ(forecast.getWeather(), Weather::Rain);
+    EXPECT_FLOAT_EQ(forecast.getPrecipitation(), 10.0f);
 }
 
-TEST(SimpleForecastTests, AverageTemperature) {
-    SimpleForecast forecast(1234567890, 10.0, 15.0, 20.0, "солнечно", 0.0);
-    EXPECT_FLOAT_EQ(forecast.getAverageTemp(), 15.0);
+// Тест на метод isInvalidForecast
+TEST(SimpleForecastTest, InvalidForecastCheck) {
+    SimpleForecast forecast(1625256000, 20.0f, 25.0f, 15.0f, Weather::Sunny, 10.0f);
+    EXPECT_FALSE(forecast.isInvalidForecast());
+
+    SimpleForecast invalidForecast(1625256000, 1.0f, 5.0f, 0.0f, Weather::Snow, 10.0f);
+    EXPECT_TRUE(invalidForecast.isInvalidForecast());
 }
 
-TEST(SimpleForecastTests, InvalidForecast) {
-    SimpleForecast forecast1(1234567890, 10.0, 15.0, 20.0, "солнечно", 5.0);
-    EXPECT_TRUE(forecast1.isInvalidForecast());
+// Тест на метод getAverageTemp
+TEST(SimpleForecastTest, AverageTemperature) {
+    SimpleForecast forecast(1625256000, 20.0f, 25.0f, 15.0f, Weather::Sunny, 0.0f);
+    EXPECT_FLOAT_EQ(forecast.getAverageTemp(), 20.0f);
+}
 
-    SimpleForecast forecast2(1234567890, 10.0, 15.0, 20.0, "снег", 0.0);
-    EXPECT_TRUE(forecast2.isInvalidForecast());
+// Тесты на операторы
+TEST(SimpleForecastTest, Operators) {
+    SimpleForecast forecast1(1625256000, 20.0f, 25.0f, 15.0f, Weather::Sunny, 10.0f);
+    SimpleForecast forecast2(1625256000, 10.0f, 15.0f, 5.0f, Weather::Rain, 5.0f);
 
-    SimpleForecast forecast3(1234567890, -5.0, 0.0, 5.0, "дождь", 10.0);
-    EXPECT_FALSE(forecast3.isInvalidForecast());
+    forecast1 += forecast2;
+
+    EXPECT_FLOAT_EQ(forecast1.getMorningTemp(), 15.0f);
+    EXPECT_FLOAT_EQ(forecast1.getDayTemp(), 20.0f);
+    EXPECT_FLOAT_EQ(forecast1.getEveningTemp(), 10.0f);
+    EXPECT_EQ(forecast1.getWeather(), Weather::Rain);
+}
+
+// Тест на оператор сравнения
+TEST(SimpleForecastTest, ComparisonOperators) {
+    SimpleForecast forecast1(1625256000, 20.0f, 25.0f, 15.0f, Weather::Sunny, 0.0f);
+    SimpleForecast forecast2(1625266000, 20.0f, 25.0f, 15.0f, Weather::Sunny, 0.0f);
+
+    EXPECT_TRUE(forecast1 < forecast2);
+    EXPECT_TRUE(forecast1 == forecast1);
+}
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

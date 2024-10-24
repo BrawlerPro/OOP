@@ -94,7 +94,7 @@ public:
      *
      * @throw std::out_of_range Если индекс выходит за границы массива.
      */
-    SimpleForecast& operator[](std::size_t index);
+    const SimpleForecast& operator[](std::size_t index);
 
     /**
      * @brief Удалить прогноз по индексу.
@@ -112,7 +112,7 @@ public:
      *
      * @throw std::runtime_error Если коллекция прогнозов пуста.
      */
-    SimpleForecast findColdestDay() const;
+    [[nodiscard]] SimpleForecast findColdestDay() const;
 
     /**
      * @brief Найти ближайший солнечный день от текущей даты.
@@ -122,7 +122,7 @@ public:
      *
      * @throw std::runtime_error Если нет ближайшего солнечного дня.
      */
-    SimpleForecast findNearestSunnyDay(long currentTimestamp) const;
+    [[nodiscard]] SimpleForecast& findNearestSunnyDay(std::time_t currentTimestamp) const;
 
     /**
      * @brief Удалить все ошибочные прогнозы.

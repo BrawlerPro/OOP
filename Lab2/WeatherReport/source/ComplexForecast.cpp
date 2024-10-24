@@ -1,5 +1,4 @@
 #include <WeatherReport/ComplexForecast.h>
-#include <algorithm>
 
 // Конструктор по умолчанию
 ComplexForecast::ComplexForecast() : size(0), capacity(10) {
@@ -96,7 +95,7 @@ void ComplexForecast::addForecast(const SimpleForecast& forecast) {
 }
 
 // Получение прогноза по индексу
-SimpleForecast& ComplexForecast::operator[](std::size_t index) {
+const SimpleForecast& ComplexForecast::operator[](std::size_t index) {
     if (index >= size) {
         throw std::out_of_range("Неверный индекс!");
     }
@@ -129,9 +128,9 @@ SimpleForecast ComplexForecast::findColdestDay() const {
 }
 
 // Поиск ближайшего солнечного дня
-SimpleForecast ComplexForecast::findNearestSunnyDay(long currentTimestamp) const {
+SimpleForecast& ComplexForecast::findNearestSunnyDay(std::time_t currentTimestamp) const {
     for (std::size_t i = 0; i < size; ++i) {
-        if (forecasts[i].getTimestamp() > currentTimestamp && forecasts[i].getWeather() == "солнечно") {
+        if (forecasts[i].getTimestamp() > currentTimestamp && forecasts[i].getWeather() == Weather::Sunny) {
             return forecasts[i];
         }
     }
@@ -152,14 +151,14 @@ void ComplexForecast::removeInvalidForecasts() {
 // Сортировка прогнозов по дате
 void ComplexForecast::sortForecasts() {
     std::sort(forecasts, forecasts + size, [](const SimpleForecast& a, const SimpleForecast& b) {
-        return a.getTimestamp() < b.getTimestamp();
+        return a < b;
     });
 }
 
 // Оператор вывода
 std::ostream& operator<<(std::ostream& out, const ComplexForecast& forecast) {
     for (std::size_t i = 0; i < forecast.size; ++i) {
-        out << forecast.forecasts[i] << "\n";  // Выводим каждый прогноз
+        out << forecast.forecasts[i] << "\n";
     }
     return out;
 }

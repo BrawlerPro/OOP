@@ -3,43 +3,26 @@
 #include <iostream>
 #include <ctime>
 
-// Конструктор по умолчанию
+// --- Конструкторы ---
 SimpleForecast::SimpleForecast()
-        : timestamp(0), morningTemp(0.0), dayTemp(0.0), eveningTemp(0.0), weather("солнечно"), precipitation(0.0) {}
+        : timestamp(std::chrono::system_clock::now()), morningTemp(0), dayTemp(0), eveningTemp(0), weather(Weather::Sunny), precipitation(0) {}
 
-// Конструктор с полным набором параметров
-SimpleForecast::SimpleForecast(long timestamp, float morningTemp, float dayTemp, float eveningTemp, std::string weather,
-                               float precipitation)
-        : timestamp(timestamp), morningTemp(morningTemp), dayTemp(dayTemp), eveningTemp(eveningTemp),
-          weather(std::move(weather)), precipitation(precipitation) {
-    if (morningTemp < -273 || dayTemp < -273 || eveningTemp < -273 || morningTemp > 60 || dayTemp > 60 ||
-        eveningTemp > 60) {
-        throw std::invalid_argument("Температура выходит за допустимые пределы!");
-    }
-    if (precipitation < 0 || precipitation > 1500) {
-        throw std::invalid_argument("Осадки выходят за допустимые пределы!");
-    }
-}
+SimpleForecast::SimpleForecast(std::time_t ts, float morning, float day, float evening, Weather w, float precip)
+        : timestamp(std::chrono::system_clock::from_time_t(ts)), morningTemp(morning), dayTemp(day), eveningTemp(evening), weather(w), precipitation(precip) {}
 
-// Конструктор с автоматическим выбором погодного явления
-SimpleForecast::SimpleForecast(long timestamp, float morningTemp, float dayTemp, float eveningTemp, float precipitation)
-        : timestamp(timestamp), morningTemp(morningTemp), dayTemp(dayTemp), eveningTemp(eveningTemp),
-          precipitation(precipitation) {
+SimpleForecast::SimpleForecast(std::time_t ts, float morning, float day, float evening, float precip)
+        : timestamp(std::chrono::system_clock::from_time_t(ts)), morningTemp(morning), dayTemp(day), eveningTemp(evening), precipitation(precip) {
 
-    if (precipitation > 0) {
-        if (morningTemp <= 0 || dayTemp <= 0 || eveningTemp <= 0) {
-            weather = "снег";
-        } else {
-            weather = "дождь";
-        }
+    if (precip > 0) {
+        weather = (morning <= 0 || day <= 0 || evening <= 0) ? Weather::Snow : Weather::Rain;
     } else {
-        weather = "солнечно";
+        weather = Weather::Sunny;
     }
 }
 
 
-// Геттеры
-long SimpleForecast::getTimestamp() const { return timestamp; }
+// --- Геттеры ---
+std::time_t SimpleForecast::getTimestamp() const { return std::chrono::system_clock::to_time_t(timestamp); }
 
 float SimpleForecast::getMorningTemp() const { return morningTemp; }
 
@@ -47,23 +30,14 @@ float SimpleForecast::getDayTemp() const { return dayTemp; }
 
 float SimpleForecast::getEveningTemp() const { return eveningTemp; }
 
-std::string SimpleForecast::getWeather() const { return weather; }
+Weather SimpleForecast::getWeather() const { return weather;}
 
 float SimpleForecast::getPrecipitation() const { return precipitation; }
 
-std::string SimpleForecast::getReadableDate(long timestamp)
-{
-    auto t = static_cast<std::time_t>(timestamp);
-    std::tm tm = *std::localtime(&t);
-    char buffer[80];
-    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
-    return buffer;
-}
 
 
-
-// Сеттеры
-void SimpleForecast::setTimestamp(long temp) { timestamp = temp; }
+// --- Сеттеры ---
+void SimpleForecast::setTimestamp(std::time_t temp) { timestamp = std::chrono::system_clock::from_time_t(temp); }
 
 void SimpleForecast::setMorningTemp(float temp) { morningTemp = temp; }
 
@@ -71,27 +45,34 @@ void SimpleForecast::setDayTemp(float temp) { dayTemp = temp; }
 
 void SimpleForecast::setEveningTemp(float temp) { eveningTemp = temp; }
 
-void SimpleForecast::setWeather(const std::string &temp) { weather = temp; }
+void SimpleForecast::setWeather(Weather temp) { weather = temp; }
 
 void SimpleForecast::setPrecipitation(float temp) { precipitation = temp; }
 
-// Проверка, является ли прогноз ошибочным
+// --- Проверка, является ли прогноз ошибочным ---
 bool SimpleForecast::isInvalidForecast() const {
-    if ((weather == "солнечно" || weather == "облачно") && precipitation != 0) {
+    if (morningTemp < -100 || morningTemp > 60 || dayTemp < -100 || dayTemp > 60 || eveningTemp < -100 || eveningTemp > 60) {
         return true;
     }
-    if (weather == "снег" && (morningTemp > 0 || dayTemp > 0 || eveningTemp > 0)) {
+    if (precipitation > 1500) {
         return true;
+    }
+    if ((weather == Weather::Sunny || weather == Weather::Cloudy) && precipitation > 0) {
+        return true;  // При солнечной или облачной погоде не должно быть осадков
+    }
+    if (weather == Weather::Snow && (morningTemp > 0 || dayTemp > 0 || eveningTemp > 0)) {
+        return true;  // Снег при температуре выше 0°C невозможен
     }
     return false;
 }
 
-// Получение средней температуры за сутки
+
+// --- Получение средней температуры за сутки ---
 float SimpleForecast::getAverageTemp() const {
     return (morningTemp + dayTemp + eveningTemp) / 3;
 }
 
-// Оператор += для объединения прогнозов
+// --- Оператор += для объединения прогнозов ---
 SimpleForecast &SimpleForecast::operator+=(const SimpleForecast &other) {
     if (this->timestamp != other.timestamp) {
         throw std::invalid_argument("Прогнозы должны быть за одну и ту же дату!");
@@ -101,19 +82,14 @@ SimpleForecast &SimpleForecast::operator+=(const SimpleForecast &other) {
     eveningTemp = (eveningTemp + other.eveningTemp) / 2;
     precipitation = (precipitation + other.precipitation) / 2;
 
-    if (weather == "солнечно" &&
-        (other.weather == "облачно" || other.weather == "дождь" || other.weather == "снег")) {
-        weather = other.weather;
-    } else if (weather == "облачно" && (other.weather == "дождь" || other.weather == "снег")) {
-        weather = other.weather;
-    } else if (weather == "дождь" && other.weather == "снег") {
+    if (static_cast<int>(other.weather) > static_cast<int>(weather)) {
         weather = other.weather;
     }
 
     return *this;
 }
 
-// Операторы сравнения
+// --- Операторы сравнения ---
 bool SimpleForecast::operator<(const SimpleForecast &other) const {
     return timestamp < other.timestamp;
 }
@@ -122,19 +98,45 @@ bool SimpleForecast::operator==(const SimpleForecast &other) const {
     return timestamp == other.timestamp;
 }
 
-// Операторы ввода/вывода
+// --- Операторы ввода/вывода ---
 std::istream &operator>>(std::istream &in, SimpleForecast &forecast) {
-    in >> forecast.timestamp >> forecast.morningTemp >> forecast.dayTemp >> forecast.eveningTemp >> forecast.weather
-       >> forecast.precipitation;
+    std::time_t unix_time;
+    in >> unix_time;
+    forecast.setTimestamp(unix_time);
+    in >> forecast.morningTemp >> forecast.dayTemp >> forecast.eveningTemp;
+    int weather_choice;
+    in >> weather_choice;
+    switch (weather_choice) {
+        case 1: forecast.setWeather(Weather::Sunny); break;
+        case 2: forecast.setWeather(Weather::Cloudy); break;
+        case 3: forecast.setWeather(Weather::Rain); break;
+        case 4: forecast.setWeather(Weather::Snow); break;
+        case 5: forecast.setWeather(Weather::Windy); break;
+        case 6: forecast.setWeather(Weather::Fog); break;
+        default: std::cerr << "Неверный выбор, установлено значение по умолчанию: Солнечно.\n";
+            forecast.setWeather(Weather::Sunny);
+    }
+    in >> forecast.precipitation;
     return in;
 }
 
 std::ostream &operator<<(std::ostream &out, const SimpleForecast &forecast) {
-    out << "Дата: " << SimpleForecast::getReadableDate(forecast.getTimestamp()) << forecast.getTimestamp() << "\n"
+    std::string wh;
+    switch (forecast.weather) {
+        case Weather::Sunny: wh = "Солнечно"; break;
+        case Weather::Cloudy: wh = "Облачно"; break;
+        case Weather::Rain: wh = "Дождь"; break;
+        case Weather::Snow: wh = "Снег"; break;
+        case Weather::Windy: wh = "Ветрено"; break;
+        case Weather::Fog: wh = "Туман"; break;
+        default: wh = "Неизвестно";
+    }
+    std::time_t tm = forecast.getTimestamp();
+    out << "Дата: " << std::ctime(&tm)
         << "Температура утром: " << forecast.getMorningTemp() << " °C\n"
         << "Температура днем: " << forecast.getDayTemp() << " °C\n"
         << "Температура вечером: " << forecast.getEveningTemp() << " °C\n"
-        << "Погодное явление: " << forecast.getWeather() << "\n"
+        << "Погодное явление: " << wh << "\n"
         << "Осадки: " << forecast.getPrecipitation() << " мм\n";
     return out;
 }
