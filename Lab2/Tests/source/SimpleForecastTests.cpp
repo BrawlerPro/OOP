@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include <WeatherReport/SimpleForecast.h>
 
+using namespace WeatherReport;
+
 // Тесты для конструктора по умолчанию
 TEST(SimpleForecastTest, DefaultConstructor) {
     SimpleForecast forecast;
