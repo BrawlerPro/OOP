@@ -1,40 +1,26 @@
 #include <WeatherReport/ComplexForecast.h>
+#include <algorithm>
+#include <stdexcept>
+
+namespace WeatherReport {
 
 // Конструктор по умолчанию
-ComplexForecast::ComplexForecast() : size(0), capacity(10) {
-    forecasts = new SimpleForecast[capacity];
-}
+    ComplexForecast::ComplexForecast() : size(0), capacity(10), forecasts(new SimpleForecast[capacity]) {}
 
 // Конструктор с инициализацией
-ComplexForecast::ComplexForecast(const SimpleForecast* forecastsArray, std::size_t count)
-{
-    if (count < 1) {
-        throw std::invalid_argument("Количество прогнозов должно быть больше 0.");
+    ComplexForecast::ComplexForecast(const SimpleForecast* forecastsArray, std::size_t count)
+            : size(count), capacity(std::max(count, std::size_t(10))), forecasts(new SimpleForecast[capacity]) {
+        if (forecastsArray && count > 0) {
+            std::copy(forecastsArray, forecastsArray + count, forecasts);
+        }
     }
-    forecasts = new SimpleForecast[count];
-    size = count;
-    capacity = count;
-    for (std::size_t i = 0; i < size; ++i) {
-        forecasts[i] = forecastsArray[i];
-    }
-}
 
 // Копирующий конструктор
-ComplexForecast::ComplexForecast(const ComplexForecast& other)
-{
-    forecasts = new SimpleForecast[other.capacity];
-    size = other.size;
-    capacity = other.capacity;
-    for (std::size_t i = 0; i < size; ++i) {
-        forecasts[i] = other.forecasts[i];
-    }
-}
-
-
+    ComplexForecast::ComplexForecast(const ComplexForecast& other) : ComplexForecast(other.forecasts, other.size) {}
 
 // Перемещающий конструктор
-ComplexForecast::ComplexForecast(ComplexForecast&& other) noexcept
-        : forecasts(other.forecasts), size(other.size), capacity(other.capacity) {
+    ComplexForecast::ComplexForecast(ComplexForecast&& other) noexcept
+    : forecasts(other.forecasts), size(other.size), capacity(other.capacity) {
     other.forecasts = nullptr;
     other.size = 0;
     other.capacity = 0;
@@ -47,9 +33,7 @@ ComplexForecast& ComplexForecast::operator=(const ComplexForecast& other) {
         forecasts = new SimpleForecast[other.capacity];
         size = other.size;
         capacity = other.capacity;
-        for (std::size_t i = 0; i < size; ++i) {
-            forecasts[i] = other.forecasts[i];
-        }
+        std::copy(other.forecasts, other.forecasts + size, forecasts);
     }
     return *this;
 }
@@ -61,8 +45,6 @@ ComplexForecast& ComplexForecast::operator=(ComplexForecast&& other) noexcept {
         forecasts = other.forecasts;
         size = other.size;
         capacity = other.capacity;
-
-        // Обнуляем перемещаемый объект
         other.forecasts = nullptr;
         other.size = 0;
         other.capacity = 0;
@@ -77,11 +59,9 @@ ComplexForecast::~ComplexForecast() {
 
 // Увеличение ёмкости массива
 void ComplexForecast::resize() {
-    auto* newForecasts = new SimpleForecast[capacity * 2];
     capacity *= 2;
-    for (std::size_t i = 0; i < size; ++i) {
-        newForecasts[i] = forecasts[i];
-    }
+    auto* newForecasts = new SimpleForecast[capacity];
+    std::copy(forecasts, forecasts + size, newForecasts);
     delete[] forecasts;
     forecasts = newForecasts;
 }
@@ -95,71 +75,75 @@ void ComplexForecast::addForecast(const SimpleForecast& forecast) {
 }
 
 // Получение прогноза по индексу
-const SimpleForecast& ComplexForecast::operator[](std::size_t index) {
+const SimpleForecast& ComplexForecast::operator[](std::size_t index) const {
     if (index >= size) {
-        throw std::out_of_range("Неверный индекс!");
+        throw std::out_of_range("Invalid index!");
     }
     return forecasts[index];
+}
+
+SimpleForecast& ComplexForecast::operator[](std::size_t index) {
+    return const_cast<SimpleForecast&>(static_cast<const ComplexForecast&>(*this)[index]);
 }
 
 // Удаление прогноза по индексу
 void ComplexForecast::removeForecast(std::size_t index) {
     if (index >= size) {
-        throw std::out_of_range("Неверный индекс!");
+        throw std::out_of_range("Invalid index!");
     }
-    for (std::size_t i = index; i < size - 1; ++i) {
-        forecasts[i] = forecasts[i + 1];
-    }
+    std::move(forecasts + index + 1, forecasts + size, forecasts + index);
     --size;
 }
 
 // Поиск самого холодного дня
 SimpleForecast ComplexForecast::findColdestDay() const {
     if (size == 0) {
-        throw std::runtime_error("Нет прогнозов для анализа.");
+        throw std::runtime_error("There are no forecasts for analysis.");
     }
-    SimpleForecast coldest = forecasts[0];
-    for (std::size_t i = 1; i < size; ++i) {
-        if (forecasts[i].getAverageTemp() < coldest.getAverageTemp()) {
-            coldest = forecasts[i];
-        }
-    }
-    return coldest;
+    return *std::min_element(forecasts, forecasts + size, [](const SimpleForecast& a, const SimpleForecast& b) {
+        return a.getAverageTemp() < b.getAverageTemp();
+    });
 }
 
 // Поиск ближайшего солнечного дня
 SimpleForecast& ComplexForecast::findNearestSunnyDay(std::time_t currentTimestamp) const {
-    for (std::size_t i = 0; i < size; ++i) {
-        if (forecasts[i].getTimestamp() > currentTimestamp && forecasts[i].getWeather() == Weather::Sunny) {
-            return forecasts[i];
+    auto it = std::min_element(forecasts, forecasts + size, [currentTimestamp](const SimpleForecast& a, const SimpleForecast& b) {
+        if (a.getTimestamp() <= currentTimestamp || a.getWeather() != Weather::Sunny) {
+            return false; // a не является подходящим днем
         }
+        if (b.getTimestamp() <= currentTimestamp || b.getWeather() != Weather::Sunny) {
+            return true; // b не является подходящим днем, а является
+        }
+        // Выбираем ближайший солнечный день
+        return (a.getTimestamp() - currentTimestamp) < (b.getTimestamp() - currentTimestamp);
+    });
+
+    if (it != forecasts + size && it->getWeather() == Weather::Sunny && it->getTimestamp() > currentTimestamp) {
+        return *it;
     }
-    throw std::runtime_error("Нет ближайшего солнечного дня.");
+    throw std::runtime_error("There is no nearest sunny day.");
 }
 
 // Удаление всех ошибочных прогнозов
 void ComplexForecast::removeInvalidForecasts() {
-    std::size_t validCount = 0;
-    for (std::size_t i = 0; i < size; ++i) {
-        if (!forecasts[i].isInvalidForecast()) {
-            forecasts[validCount++] = forecasts[i];
-        }
-    }
-    size = validCount;
+    auto newEnd = std::remove_if(forecasts, forecasts + size, [](const SimpleForecast& forecast) {
+        return forecast.isInvalidForecast();
+    });
+    size = newEnd - forecasts;
 }
 
 // Сортировка прогнозов по дате
 void ComplexForecast::sortForecasts() {
     std::sort(forecasts, forecasts + size, [](const SimpleForecast& a, const SimpleForecast& b) {
-        return a < b;
+        return a.getTimestamp() < b.getTimestamp();
     });
 }
 
 // Оператор вывода
 std::ostream& operator<<(std::ostream& out, const ComplexForecast& forecast) {
-    for (std::size_t i = 0; i < forecast.size; ++i) {
-        out << forecast.forecasts[i] << "\n";
-    }
+    std::for_each(forecast.forecasts, forecast.forecasts + forecast.size, [&out](const SimpleForecast& f) {
+        out << f << "\n";
+    });
     return out;
 }
 
@@ -171,3 +155,5 @@ std::istream& operator>>(std::istream& in, ComplexForecast& forecast) {
     }
     return in;
 }
+
+}  // namespace WeatherReport

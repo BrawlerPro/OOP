@@ -8,16 +8,6 @@
  * @brief Класс для управления коллекцией суточных прогнозов погоды.
  */
 class ComplexForecast {
-private:
-    SimpleForecast* forecasts;  ///< Указатель на динамический массив прогнозов
-    std::size_t size;           ///< Текущее количество прогнозов
-    std::size_t capacity;       ///< Максимальная ёмкость массива
-
-    /**
-     * @brief Увеличить ёмкость массива прогнозов.
-     * Удваивает текущую ёмкость массива при переполнении.
-     */
-    void resize();
 
 public:
     /**
@@ -34,7 +24,7 @@ public:
      *
      * @throw std::invalid_argument Если количество прогнозов меньше 1.
      */
-    ComplexForecast(const SimpleForecast* forecastsArray, std::size_t count);
+    ComplexForecast(const SimpleForecast *forecastsArray, std::size_t count);
 
     /**
      * @brief Копирующий конструктор.
@@ -43,7 +33,7 @@ public:
      *
      * @param other Другой объект `ComplexForecast` для копирования.
      */
-    ComplexForecast(const ComplexForecast& other);
+    ComplexForecast(const ComplexForecast &other);
 
     /**
      * @brief Перемещающий конструктор.
@@ -52,7 +42,9 @@ public:
      *
      * @param other Другой объект `ComplexForecast` для перемещения.
      */
-    ComplexForecast(ComplexForecast&& other) noexcept;
+    ComplexForecast(ComplexForecast &&other)
+
+    noexcept;
 
     /**
      * @brief Оператор присваивания для копирования.
@@ -60,7 +52,7 @@ public:
      * @param other Другой объект `ComplexForecast` для копирования.
      * @return Ссылка на текущий объект `ComplexForecast`.
      */
-    ComplexForecast& operator=(const ComplexForecast& other);
+    ComplexForecast &operator=(const ComplexForecast &other);
 
     /**
      * @brief Оператор присваивания для перемещения.
@@ -68,7 +60,9 @@ public:
      * @param other Другой объект `ComplexForecast` для перемещения.
      * @return Ссылка на текущий объект `ComplexForecast`.
      */
-    ComplexForecast& operator=(ComplexForecast&& other) noexcept;
+    ComplexForecast &operator=(ComplexForecast &&other)
+
+    noexcept;
 
     /**
      * @brief Деструктор.
@@ -84,17 +78,29 @@ public:
      *
      * @throw std::bad_alloc Если не удалось выделить память для нового прогноза.
      */
-    void addForecast(const SimpleForecast& forecast);
+    void addForecast(const SimpleForecast &forecast);
 
     /**
-     * @brief Получить прогноз по индексу.
+     * @brief Возвращает прогноз по индексу (константная версия).
      *
-     * @param index Индекс прогноза в коллекции.
-     * @return Ссылка на объект `SimpleForecast`.
-     *
-     * @throw std::out_of_range Если индекс выходит за границы массива.
+     * @param index Индекс прогноза.
+     * @return const SimpleForecast& Константная ссылка на прогноз.
+     * @throws std::out_of_range Если индекс выходит за границы массива.
      */
-    const SimpleForecast& operator[](std::size_t index);
+    const SimpleForecast &ComplexForecast::operator[](std::size_t index) const;
+
+    /**
+     * @brief Возвращает прогноз по индексу (неконстантная версия).
+     *
+     * @param index Индекс прогноза.
+     * @return SimpleForecast& Ссылка на прогноз для изменения.
+     * @throws std::out_of_range Если индекс выходит за границы массива.
+     *
+     * @details Неконстантная версия вызывает константную и использует const_cast для снятия
+     * константности, что позволяет избежать дублирования кода.
+     */
+    SimpleForecast &ComplexForecast::operator[](std::size_t index);
+
 
     /**
      * @brief Удалить прогноз по индексу.
@@ -122,7 +128,7 @@ public:
      *
      * @throw std::runtime_error Если нет ближайшего солнечного дня.
      */
-    [[nodiscard]] SimpleForecast& findNearestSunnyDay(std::time_t currentTimestamp) const;
+    [[nodiscard]] SimpleForecast &findNearestSunnyDay(std::time_t currentTimestamp) const;
 
     /**
      * @brief Удалить все ошибочные прогнозы.
@@ -141,7 +147,7 @@ public:
      * @param forecast Объект `ComplexForecast`.
      * @return Ссылка на поток вывода.
      */
-    friend std::ostream& operator<<(std::ostream& out, const ComplexForecast& forecast);
+    friend std::ostream &operator<<(std::ostream &out, const ComplexForecast &forecast);
 
     /**
      * @brief Оператор ввода из потока.
@@ -150,7 +156,19 @@ public:
      * @param forecast Объект `ComplexForecast`.
      * @return Ссылка на поток ввода.
      */
-    friend std::istream& operator>>(std::istream& in, ComplexForecast& forecast);
+    friend std::istream &operator>>(std::istream &in, ComplexForecast &forecast);
+
+private:
+    SimpleForecast *forecasts;  ///< Указатель на динамический массив прогнозов
+    std::size_t size;           ///< Текущее количество прогнозов
+    std::size_t capacity;       ///< Максимальная ёмкость массива
+
+    /**
+     * @brief Увеличить ёмкость массива прогнозов.
+     * Удваивает текущую ёмкость массива при переполнении.
+     */
+    void resize();
+
 };
 
 #endif // COMPLEXFORECAST_H

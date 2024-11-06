@@ -2,7 +2,7 @@
 #include <WeatherReport/ComplexForecast.h>
 #include <iostream>
 #include <limits>
-
+using namespace WeatherReport;
 /**
  * @brief Функция для ввода данных прогноза от пользователя.
  * @return SimpleForecast Объект прогноза погоды.
