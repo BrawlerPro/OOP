@@ -5,12 +5,12 @@
 namespace WeatherReport {
 
 // Конструктор по умолчанию
-    ComplexForecast::ComplexForecast() : size(0), capacity(10), forecasts(new SimpleForecast[capacity]) {}
+    ComplexForecast::ComplexForecast() : size(0), capacity(10), forecasts(new SimpleForecast[capacity]){}
 
 // Конструктор с инициализацией
     ComplexForecast::ComplexForecast(const SimpleForecast* forecastsArray, std::size_t count)
-            : size(count), capacity(std::max(count, std::size_t(10))), forecasts(new SimpleForecast[capacity]) {
-        if (forecastsArray && count > 0) {
+            : size(count), capacity(std::max(count, std::size_t(10))), forecasts(new SimpleForecast[capacity]){;
+        if (forecastsArray) {
             std::copy(forecastsArray, forecastsArray + count, forecasts);
         }
     }
@@ -109,12 +109,11 @@ SimpleForecast ComplexForecast::findColdestDay() const {
 SimpleForecast& ComplexForecast::findNearestSunnyDay(std::time_t currentTimestamp) const {
     auto it = std::min_element(forecasts, forecasts + size, [currentTimestamp](const SimpleForecast& a, const SimpleForecast& b) {
         if (a.getTimestamp() <= currentTimestamp || a.getWeather() != Weather::Sunny) {
-            return false; // a не является подходящим днем
+            return false;
         }
         if (b.getTimestamp() <= currentTimestamp || b.getWeather() != Weather::Sunny) {
-            return true; // b не является подходящим днем, а является
+            return true;
         }
-        // Выбираем ближайший солнечный день
         return (a.getTimestamp() - currentTimestamp) < (b.getTimestamp() - currentTimestamp);
     });
 

@@ -1,0 +1,96 @@
+{
+    "schools": [
+        "Necromancy",
+        "Magician",
+        "Warrior"
+    ],
+    "characters": [
+        {
+            "name": "SummonerA",
+            "type": "summoner",
+            "health": 100,
+            "attack": 10,
+            "range": 3,
+            "energy": 100,
+            "position": { "x": 4, "y": 4 }
+        },
+        {
+            "name": "SummonerB",
+            "type": "summoner",
+            "health": 100,
+            "attack": 10,
+            "range": 3,
+            "energy": 100,
+            "position": { "x": 17, "y": 7 }
+        },
+        {
+            "type": "creature",
+            "school": "Necromancy",
+            "name": "skeleton",
+            "isAmoral": true,
+            "isResurrectable": true,
+            "health": 30,
+            "attack": 5,
+            "range": 2,
+            "speed": 3
+        },
+        {
+            "type": "creature",
+            "school": "Necromancy",
+            "name": "witch",
+            "isAmoral": false,
+            "isResurrectable": false,
+            "morale": 5,
+            "health": 70,
+            "attack": 5,
+            "range": 3,
+            "speed": 1
+        },
+        {   "type": "creature",
+            "school": "Necromancy",
+            "name": "giantskeleton",
+            "isAmoral": false,
+            "isResurrectable": false,
+            "health": 100,
+            "attack": 20,
+            "range": 2,
+            "speed": 1
+        },
+        {   "type": "creature",
+            "school": "Necromancy",
+            "name": "ksit",
+            "isAmoral": false,
+            "isResurrectable": false,
+            "health": 100,
+            "attack": 50,
+            "range": 7,
+            "speed": 9
+        }
+    ],
+    "abilities": [
+        {
+            "school": "Necromancy",
+            "energyCost": 10,
+            "requireLevel": 1,
+            "summoning": "skeleton"
+        },
+        {
+            "school": "Necromancy",
+            "energyCost": 40,
+            "requireLevel": 2,
+            "summoning": "witch"
+        },
+        {
+            "school": "Necromancy",
+            "energyCost": 80,
+            "requireLevel": 3,
+            "summoning": "giantskeleton"
+        },
+        {
+            "school": "Necromancy",
+            "energyCost": 5,
+            "requireLevel": 4,
+            "summoning": "ksit"
+        }
+    ]
+}
